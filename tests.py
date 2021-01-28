@@ -1,5 +1,5 @@
 import unittest
-from tokens import Dfa, LexerDfa
+from tokens import _Dfa, LexerDfa
 
 
 def char_to_index(c):
@@ -30,22 +30,22 @@ dfa_table = [
     [None]*7
 ]
 
-class TestDfa(unittest.TestCase):
+class Test_Dfa(unittest.TestCase):
 
     def test_dfa(self):
-        dfa = Dfa(dfa_table)
+        dfa = _Dfa(dfa_table)
         self.assertEqual(0, dfa.next(0))
         self.assertEqual(1, dfa.next(1))
         self.assertEqual(None, dfa.next(4))
-        self.assertEqual(1, dfa.state)
+        self.assertEqual(1, dfa._state)
 
     def test_dfa_2(self):
-        dfa = Dfa(dfa_table)
+        dfa = _Dfa(dfa_table)
         self.assertEqual(5, dfa.next(5))
         self.assertEqual(5, dfa.next(5))
         self.assertEqual(6, dfa.next(0))
         self.assertEqual(None, dfa.next(3))
-        self.assertEqual(6, dfa.state)
+        self.assertEqual(6, dfa._state)
 
     def test_lexer_dfa(self):
         ldfa = LexerDfa()
